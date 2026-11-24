@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bhs-primary: #1F7A4D;
+  --color-bhs-primary-dark: #165B39;
+  --color-bhs-secondary: #1B2A6B;
+  --color-bhs-secondary-dark: #121D4D;
+  --color-bhs-accent: #C9A961;
+  --color-bhs-neutral: #F7F8FC;
+  --font-sans: "Open Sans", "Noto Sans Bengali", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-bn: "Open Sans", "Noto Sans Bengali", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --bhs-primary: #1F7A4D;
+  --bhs-secondary: #1B2A6B;
+  --bhs-accent: #C9A961;
+  --bhs-neutral: #F7F8FC;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Open Sans", "Noto Sans Bengali", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #F7F8FC;
+  color: #1A202C;
+  overflow-x: hidden;
+  font-family: "Open Sans", "Noto Sans Bengali", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.font-bn {
+  font-family: "Open Sans", "Noto Sans Bengali", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+.font-doc {
+  font-family: "Open Sans", "Noto Sans Bengali", ui-sans-serif, system-ui, sans-serif;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+@keyframes bhs-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.bhs-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: bhs-marquee 42s linear infinite;
+}
+
+.bhs-ticker-track:hover,
+.bhs-ticker-track:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes bhs-vertical-scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.bhs-notice-vertical-track {
+  display: flex;
+  flex-direction: column;
+  animation: bhs-vertical-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.bhs-notice-vertical-track:hover,
+.bhs-notice-vertical-track:focus-within {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .bhs-ticker-track,
+  .bhs-notice-vertical-track {
+    animation: none !important;
+  }
+}
+
+/* Dedicated A4 Portrait / Landscape / Card Print Architecture */
+.doc-sheet-page {
+  background: #ffffff;
+  color: #0f172a;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.doc-sheet-page + .doc-sheet-page {
+  margin-top: 24px;
+}
+
+.doc-keep-together {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-family: "Open Sans", "Noto Sans Bengali", sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    overflow: visible !important;
+  }
+
+  .no-print,
+  header.site-header,
+  footer.site-footer,
+  aside.dashboard-sidebar,
+  nav.breadcrumb-nav {
+    display: none !important;
+  }
+
+  body.printing-notice-modal #root > *:not(.notice-modal-portal),
+  body.printing-notice-modal .notice-modal-chrome {
+    display: none !important;
+  }
+
+  body.printing-notice-modal .notice-modal-overlay {
+    position: static !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  body.printing-notice-modal .notice-modal-shell {
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  body.printing-notice-modal .notice-paper-stage {
+    background: #ffffff !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.printing-notice-modal .notice-zoom-wrapper {
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .doc-sheet-page {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .doc-sheet-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .doc-sheet-page + .doc-sheet-page {
+    margin-top: 0 !important;
+  }
+
+  .print-document-sheet {
+    box-shadow: none !important;
+    border: 1.5px solid #1B2A6B !important;
+    margin: 0 !important;
+    padding: 10mm !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print-notice-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 6mm 8mm !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  tfoot {
+    display: table-footer-group !important;
+  }
+
+  tr,
+  td,
+  th {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

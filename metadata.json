@@ -1,0 +1,6 @@
+{
+  "name": "Bijhari Upashi Tara Prasanna High School (BHS)",
+  "description": "Official public website and role-based school management portal for Bijhari Upashi Tara Prasanna High School (EIIN: 113585, Est. 1898), Upashi, Naria, Shariatpur, Bangladesh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
